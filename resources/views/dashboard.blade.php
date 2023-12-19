@@ -4,12 +4,12 @@
             <div class="container mx-auto px-6 py-8">
 
                 
-                <h3 class="text-gray-700 text-3xl font-medium">Welcome Cxm : {{ auth()->user()->name }}</h3>                
+                <h3 class="text-gray-700 text-3xl font-medium">Welcome : {{ auth()->user()->name }}</h3>                
 
                 <p>Role : <b>
                     @foreach(auth()->user()->roles as $role)
                         {{ $role->name }}
-                    @endforeach 
+                    @endforeach
                 </b> </p>
   
             </div>
