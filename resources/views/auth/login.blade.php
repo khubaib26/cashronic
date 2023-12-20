@@ -3,7 +3,7 @@
         <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
           <div class="text-center">
             <a href="/">
-                <x-application-logo class="mx-auto" />
+              <x-application-logo class="mx-auto" />
             </a>
           </div>
           <h1 class="font-bold text-center text-4xl text-pink-900">Admin <span class="text-blue-500">Login</span></h1>
