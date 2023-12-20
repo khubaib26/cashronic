@@ -30,14 +30,14 @@
                         </td>
                         <td class="py-4 px-6 border-b border-grey-light text-right">
                           @can('User edit')
-                          <a href="{{route('admin.users.edit',$user->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
+                          <a href="{{route('admin.users.edit',$user->id)}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
                           @endcan
 
                           @can('User delete')
                           <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
                               @csrf
                               @method('delete')
-                              <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>
+                              <button class="border border-transparent py-1 px-3 hover:border-pink-400 text-red-400"><span class="far fa-trash"></span></button>
                           </form>
                           @endcan
 
