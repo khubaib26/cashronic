@@ -29,7 +29,7 @@ class FrontUserController extends Controller
     public function index()
     {
         $frontuser = Frontuser::paginate(10);
-        return view('setting.frontuser.index',['users' => $frontuser]);
+        return view('setting.front-user.index',['users' => $frontuser]);
     }
 
     /**
@@ -39,7 +39,7 @@ class FrontUserController extends Controller
      */
     public function create()
     {
-        return view('setting.frontuser.new');
+        return view('setting.front-user.new');
     }
 
     /**
@@ -84,7 +84,7 @@ class FrontUserController extends Controller
     {
         $user = Frontuser::find($id);
         //dd($user);
-        return view('setting.frontuser.edit',['user'=>$user]);
+        return view('setting.front-user.edit',['user'=>$user]);
     }
 
     /**
