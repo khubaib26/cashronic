@@ -17,22 +17,22 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::create([
-            'name'=>'Admin',
-            'email'=>'admin@admin.com',
+        $super_admin = User::create([
+            'name'=>'Super Admin',
+            'email'=>'superadmin@admin.com',
             'password'=>bcrypt('password'),
             'profile' => 'user.avif'
         ]);
 
-        $writer = User::create([
-            'name'=>'writer',
-            'email'=>'writer@writer.com',
+        $admin = User::create([
+            'name'=>'admin',
+            'email'=>'admin@admin.com',
             'password'=>bcrypt('password')
         ]);
 
 
+        $super_admin_role = Role::create(['name' => 'super']);
         $admin_role = Role::create(['name' => 'admin']);
-        $writer_role = Role::create(['name' => 'writer']);
 
         $permission = Permission::create(['name' => 'Post access']);
         $permission = Permission::create(['name' => 'Post edit']);
@@ -57,12 +57,17 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
 
+        $permission = Permission::create(['name' => 'FrontUser access']);
+        $permission = Permission::create(['name' => 'FrontUser edit']);
+        $permission = Permission::create(['name' => 'FrontUser create']);
+        $permission = Permission::create(['name' => 'FrontUser delete']);
 
 
+
+        $super_admin->assignRole($super_admin_role);
         $admin->assignRole($admin_role);
-        $writer->assignRole($writer_role);
 
 
-        $admin_role->givePermissionTo(Permission::all());
+        $super_admin_role->givePermissionTo(Permission::all());
     }
 }
