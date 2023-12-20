@@ -60,7 +60,7 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('permissions','PermissionController');
         Route::resource('users','UserController');
         Route::resource('posts','PostController');
-        Route::resource('frontuser','FrontUserController');
+        Route::resource('front-users','FrontUserController');
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');

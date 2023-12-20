@@ -3,7 +3,7 @@
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
             <div class="container mx-auto px-6 py-1 pb-16">
               <div class="bg-white shadow-md rounded my-6 p-5">
-                <form method="POST" action="{{ route('admin.users.update',$user->id)}}">
+                <form method="POST" action="{{ route('admin.front-users.update',$user->id)}}">
                   @csrf
                   @method('put')
                   <div class="flex flex-col space-y-2">
@@ -33,22 +33,6 @@
                     />
                 </div>
 
-                <h3 class="text-xl my-4 text-gray-600">Role</h3>
-                <div class="grid grid-cols-3 gap-4">
-                  @foreach($roles as $role)
-                      <div class="flex flex-col justify-cente">
-                          <div class="flex flex-col">
-                              <label class="inline-flex items-center mt-3">
-                                  <input type="checkbox" class="form-checkbox h-5 w-5 text-pink-900" name="roles[]" value="{{$role->id}}"
-                                  @if(count($user->roles->where('id',$role->id)))
-                                      checked 
-                                  @endif
-                                  ><span class="ml-2 text-gray-700">{{ $role->name }}</span>
-                              </label>
-                          </div>
-                      </div>
-                  @endforeach
-                </div>
                 <div class="text-center mt-16 mb-16">
                   <button type="submit" class="bg-pink-900 text-white font-bold px-5 py-1 rounded-full focus:outline-none shadow hover:bg-blue-400 transition-colors ">Submit</button>
                 </div>

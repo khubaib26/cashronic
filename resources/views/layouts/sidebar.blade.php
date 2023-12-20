@@ -61,8 +61,8 @@
 
 
                 @canany('FrontUser access','FrontUser add','FrontUser edit','FrontUser delete')
-                <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.frontuser.index') ? 'active' : '' }}"
-                    href="{{ route('admin.frontuser.index')}}">
+                <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Route::currentRouteNamed('admin.front-users.index') ? 'active' : '' }}"
+                    href="{{ route('admin.front-users.index')}}">
                     <span class="inline-flex justify-center items-center">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </span>

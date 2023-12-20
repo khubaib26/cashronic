@@ -4,7 +4,7 @@
             <div class="container mx-auto px-6 py-2">
                 <div class="text-right">
                   @can('FrontUser create')
-                    <a href="{{route('admin.frontuser.create')}}" class="bg-pink-900 text-white font-bold px-5 py-1 rounded-full focus:outline-none shadow hover:bg-blue-400 transition-colors">Front Users</a>
+                    <a href="{{route('admin.front-users.create')}}" class="bg-pink-900 text-white font-bold px-5 py-1 rounded-full focus:outline-none shadow hover:bg-blue-400 transition-colors">Front Users</a>
                   @endcan
                 </div>
 
@@ -28,11 +28,11 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->email }}</td>
                         <td class="py-4 px-6 border-b border-grey-light text-right">
                           @can('FrontUser edit')
-                          <a href="{{route('admin.frontuser.edit',$user->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
+                          <a href="{{route('admin.front-users.edit',$user->id)}}" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark text-blue-400">Edit</a>
                           @endcan
 
                           @can('FrontUser delete')
-                          <form action="{{ route('admin.frontuser.destroy', $user->id) }}" method="POST" class="inline">
+                          <form action="{{ route('admin.front-users.destroy', $user->id) }}" method="POST" class="inline">
                               @csrf
                               @method('delete')
                               <button class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue hover:bg-blue-dark text-red-400">Delete</button>

@@ -83,8 +83,8 @@ class FrontUserController extends Controller
     public function edit($id)
     {
         $user = Frontuser::find($id);
-        dd($user);
-        return view('setting.user.edit',['user'=>$user]);
+        //dd($user);
+        return view('setting.frontuser.edit',['user'=>$user]);
     }
 
     /**
@@ -96,7 +96,25 @@ class FrontUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name'=>'required',
+            'email' => 'required|email|unique:frontusers,email,'.$id.',id',
+        ]);
+
+        if($request->password != null){
+            $request->validate([
+                'password' => 'required|confirmed'
+            ]);
+            $validated['password'] = bcrypt($request->password);
+        }
+
+        //$user->update($validated);
+        $user = Frontuser::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect()->back()->withSuccess('User updated !!!');
     }
 
     /**
