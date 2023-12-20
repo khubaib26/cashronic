@@ -2,11 +2,9 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-                <img width="200" src="{{asset('images/logo.png')}}" alt="{{config('app.name')}}">
-                
+                <x-application-logo class="mx-auto" />
             </a>
-            <div class="mt-4 text-center">User Login</div>
+            <h1 class="mt-4 font-bold text-center text-4xl text-pink-900">Front <span class="text-blue-500">Login</span></h1>
         </x-slot>
 
         <!-- Session Status -->

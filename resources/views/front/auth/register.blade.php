@@ -2,9 +2,9 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="mx-auto" />
             </a>
-            Front Register
+            <h1 class="mt-4 font-bold text-center text-4xl text-pink-900">Front <span class="text-blue-500">Register</span></h1>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -51,7 +51,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4 rounded-full bg-pink-900 hover:bg-blue-500">
                     {{ __('Register') }}
                 </x-button>
             </div>
