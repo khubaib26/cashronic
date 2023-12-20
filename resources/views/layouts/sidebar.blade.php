@@ -1,9 +1,9 @@
-<div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
-            <div class="flex items-center justify-center mt-8">
+<div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-pink-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
+            <div class="flex items-center xjustify-center mt-8">
                 <div class="flex items-center">
                     <a href="{{ route('admin.dashboard') }}">
-                        <img src="{{ asset('images/logo.png') }}" style='filter: brightness(0) invert(1); width:200px;'>
-                        {{-- <span class="text-white text-2xl mx-2 font-semibold">Dashboard</span> --}}
+                        <x-application-logo class="mx-auto" />
+                        <span class="text-white text-2xl mx-2 font-semibold">Dashboard</span>
                     </a>
                 </div>
             </div>
