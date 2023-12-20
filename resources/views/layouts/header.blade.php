@@ -38,13 +38,13 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
                 style="display: none;">
                 <a href="{{ route('admin.profile') }}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-400 hover:text-white">Profile</a>
 
                 <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
                     <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-400 hover:text-white">Logout</a>
                 </form>
             </div>
         </div>
