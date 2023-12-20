@@ -24,7 +24,7 @@
                       <div class="flex flex-col justify-cente">
                           <div class="flex flex-col">
                               <label class="inline-flex items-center mt-3">
-                                  <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" name="permissions[]" value="{{$permission->id}}"  @if(count($role->permissions->where('id',$permission->id)))
+                                  <input type="checkbox" class="form-checkbox h-5 w-5 text-pink-900" name="permissions[]" value="{{$permission->id}}"  @if(count($role->permissions->where('id',$permission->id)))
                                       checked 
                                     @endif
                                   ><span class="ml-2 text-gray-700">{{ $permission->name }}</span>
@@ -34,7 +34,7 @@
                   @endforeach
                 </div>
                 <div class="text-center mt-16">
-                  <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Update</button>
+                  <button type="submit" class="bg-pink-900 text-white font-bold px-5 py-1 rounded-full focus:outline-none shadow hover:bg-blue-400 transition-colors">Update</button>
                 </div>
               </div>
 

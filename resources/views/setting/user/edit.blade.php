@@ -39,7 +39,7 @@
                       <div class="flex flex-col justify-cente">
                           <div class="flex flex-col">
                               <label class="inline-flex items-center mt-3">
-                                  <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" name="roles[]" value="{{$role->id}}"
+                                  <input type="checkbox" class="form-checkbox h-5 w-5 text-pink-900" name="roles[]" value="{{$role->id}}"
                                   @if(count($user->roles->where('id',$role->id)))
                                       checked 
                                   @endif
@@ -50,7 +50,7 @@
                   @endforeach
                 </div>
                 <div class="text-center mt-16 mb-16">
-                  <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-500 transition-colors ">Submit</button>
+                  <button type="submit" class="bg-pink-900 text-white font-bold px-5 py-1 rounded-full focus:outline-none shadow hover:bg-blue-400 transition-colors ">Submit</button>
                 </div>
               </div>
 

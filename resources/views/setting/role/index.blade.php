@@ -4,7 +4,7 @@
             <div class="container mx-auto px-6 py-2">
                 <div class="text-right">
                   @can('Role create')
-                    <a href="{{route('admin.roles.create')}}" class="bg-pink-900 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-700 rounded-full transition-colors">New Role</a>
+                    <a href="{{route('admin.roles.create')}}" class="bg-pink-900 text-white font-bold px-5 py-1 rounded focus:outline-none shadow hover:bg-blue-400 rounded-full transition-colors">New Role</a>
                 </div>
                 @endcan
 
