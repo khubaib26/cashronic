@@ -2,9 +2,11 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                <img width="200" src="{{asset('images/logo.png')}}" alt="{{config('app.name')}}">
+                
             </a>
-            Front Login
+            <div class="mt-4 text-center">User Login</div>
         </x-slot>
 
         <!-- Session Status -->
@@ -48,7 +50,7 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-button class="ml-3 rounded-full bg-pink-900 hover:bg-blue-500">
                     {{ __('Log in') }}
                 </x-button>
             </div>
