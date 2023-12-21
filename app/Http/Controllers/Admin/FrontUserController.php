@@ -60,7 +60,11 @@ class FrontUserController extends Controller
             'email'=>$request->email,
             'password'=> bcrypt($request->password),
         ]);
-        return redirect()->back()->withSuccess('Front User created !!!');
+        notify()->success('Front User created !!!');
+
+        //return redirect()->back()->withSuccess('Front User created !!!');
+        //return redirect()->to('/admin/front-users');
+        return redirect('admin/front-users');
     }
 
     /**

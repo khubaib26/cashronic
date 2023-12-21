@@ -16,10 +16,17 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @notifyCss
     </head>
     <body>
+        <x-notify::notify />
+        
+
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+        
+    @notifyJs
     </body>
+   
 </html>

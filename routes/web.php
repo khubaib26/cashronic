@@ -19,7 +19,12 @@ use App\Http\Controllers\Admin\{
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    notify()->error('Laravel Notify is awesome!', 'My custom title');
+    // emotify('error', 'Laravel Notify is awesome!', 'My custom title');
+    // connectify('success', 'Connection Found', 'Success Message Here');
+    // smilify('success', 'You are successfully reconnected');
+    // drakify('success', 'cmx message.');
+    return view('welcome');    
 });
 
 

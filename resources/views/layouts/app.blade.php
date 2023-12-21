@@ -12,22 +12,25 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        @notifyCss
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        
     </head>
     <body class="font-sans antialiased">
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
             <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
         
             @include('layouts.sidebar')
+            
 
             <div class="flex-1 flex flex-col overflow-scroll">
 
                     @include('layouts.header')
-
+                    <x-notify::notify />
                     @if(\Session::has('success'))
                         <div class="text-green-600 pt-5 pl-5">
                             <ul>
@@ -58,5 +61,6 @@
                     
             </div>
         </div>
+        @notifyJs
     </body>
 </html>
