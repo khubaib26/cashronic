@@ -59,8 +59,11 @@ class RoleController extends Controller
         $role = Role::create(['name'=>$request->name]);
 
         $role->syncPermissions($request->permissions);
+
+        notify()->success('Role created !!!');
+        return redirect()->back();
         
-        return redirect()->back()->withSuccess('Role created !!!');
+        //return redirect()->back()->withSuccess('Role created !!!');
     }
 
     /**
@@ -98,7 +101,11 @@ class RoleController extends Controller
     {
         $role->update(['name'=>$request->name]);
         $role->syncPermissions($request->permissions);
-        return redirect()->back()->withSuccess('Role updated !!!');
+
+        notify()->success('Role updated !!!');
+        return redirect()->back();
+
+        //return redirect()->back()->withSuccess('Role updated !!!');
     }
 
     /**
@@ -110,6 +117,9 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->back()->withSuccess('Role deleted !!!');
+        //return redirect()->back()->withSuccess('Role deleted !!!');
+
+        notify()->success('Role deleted !!!');
+        return redirect()->back();
     }
 }

@@ -16,7 +16,7 @@ class FrontUserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     function __construct()
+    function __construct()
     {
         $this->middleware('role_or_permission:FrontUser access|FrontUser create|FrontUser edit|FrontUser delete', ['only' => ['index','show']]);
         $this->middleware('role_or_permission:FrontUser create', ['only' => ['create','store']]);
@@ -118,7 +118,10 @@ class FrontUserController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return redirect()->back()->withSuccess('User updated !!!');
+        notify()->success('User updated !!!');
+
+        //return redirect()->back()->withSuccess('User updated !!!');
+        return redirect()->back();
     }
 
     /**
@@ -129,6 +132,9 @@ class FrontUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Frontuser::find($id)->delete();
+        notify()->success('User deleted !!!');
+        //return redirect()->back()->withSuccess('Post deleted !!!');
+        return redirect()->back();
     }
 }

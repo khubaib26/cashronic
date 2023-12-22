@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
     FrontUserController,
+    generalSettingController,
+    CategoryController,
 };
 
 /*
@@ -66,9 +68,13 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('users','UserController');
         Route::resource('posts','PostController');
         Route::resource('front-users','FrontUserController');
+        Route::resource('categories','CategoryController');
+
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');
         Route::get('/mail',[MailSettingController::class,'index'])->name('mail.index');
         Route::put('/mail-update/{mailsetting}',[MailSettingController::class,'update'])->name('mail.update');
+        //General Routes
+        Route::get('/clear-cache-all', [generalSettingController::class, 'clearCache'])->name('clearCache');
 });

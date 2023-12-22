@@ -59,7 +59,9 @@ class PermissionController extends Controller
             'name'=>'required',
         ]);
         $permission = Permission::create(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission created !!!');
+        notify()->success('Permission created !!!');
+        return redirect()->back();
+        //return redirect()->back()->withSuccess('Permission created !!!');
     }
 
     /**
@@ -94,7 +96,10 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $permission->update(['name'=>$request->name]);
-        return redirect()->back()->withSuccess('Permission updated !!!');
+        //return redirect()->back()->withSuccess('Permission updated !!!');
+
+        notify()->success('Permission updated !!!');
+        return redirect()->back();
     }
 
     /**
@@ -106,6 +111,8 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->back()->withSuccess('Permission deleted !!!');
+        //return redirect()->back()->withSuccess('Permission deleted !!!');
+        notify()->success('Permission deleted !!!');
+        return redirect()->back();
     }
 }

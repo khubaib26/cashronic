@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Post::factory(100)->create();
         \App\Models\Frontuser::factory(10)->create();
         $this->call(MailsettingSeeder::class);
+        $this->call(CategorySeeder::class);
     }
 }
