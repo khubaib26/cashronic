@@ -45,6 +45,11 @@ Route::get('/test-mail',function(){
 
 
 Route::get('/dashboard', function () {
+   
+    if(Auth::guard('front')->check()){
+        cookie()->queue(cookie('cxm', Auth::guard('front')->user()->id, 60));
+    }
+   
     return view('front.dashboard');
 })->middleware(['front'])->name('dashboard');
 

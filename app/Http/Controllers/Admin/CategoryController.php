@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -28,7 +29,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(10);
-        dd($categories);
+        //dd($categories);
         return view('setting.category.index',['categories' => $categories]);
     }
 
@@ -39,7 +40,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        return view('setting.category.new', ['categories' => $categories]);
     }
 
     /**
@@ -50,7 +52,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+        ]);
+
+        if($request->parent_category != ''){
+            Subcategory::create([
+                'name'  =>  $request->name,
+                'category_id' => $request->parent_category
+            ]);
+        }else{
+            Category::create([
+                'name'=>$request->name
+            ]);
+        }
+
+        notify()->success('Category created !!!');
+        return redirect('admin/categories');
     }
 
     /**
@@ -70,9 +88,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        dd($category);
+        return view('setting.category.edit',['category'=>$category]);
     }
 
     /**

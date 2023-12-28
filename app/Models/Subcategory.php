@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Subcategory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'categories';
+    protected $table = 'subcategories';
     protected $primaryKey = 'id'; 
     protected $guarded = [];
 
-    public function subCategories(){
-        return $this->hasMany(Subcategory::class, 'category_id');
+    public function category(){
+            $this->belongsTo(Category::class);
     }
 }

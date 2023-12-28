@@ -18,6 +18,7 @@ class FrontMiddleware
     {
         if(!Auth::guard('front')->check()){
             return redirect('login');
+            
         }
         return $next($request);
     }

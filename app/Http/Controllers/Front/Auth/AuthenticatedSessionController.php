@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\FrontLoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Frontuser;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -30,7 +31,9 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $user = Frontuser::where('email', $request->email)->first();
         $request->session()->regenerate();
+        session(['api_access_token' => $user->createToken("API TOKEN")->plainTextToken]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
