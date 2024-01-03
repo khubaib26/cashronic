@@ -113,10 +113,16 @@ class StoreController extends Controller
     public function update(Request $request, Store $store)
     {
         
+        
+        
+
         if($request->hasFile('logo')){
+            
+            unlink('store/'.$store->logo);
+            
             $file = $request->file('logo');
             $filePath = time().'.'.$file->getClientOriginalExtension();
-             //Move Uploaded File
+            //Move Uploaded File
             $destinationPath = 'store';
             $file->move($destinationPath,$filePath);
         }else{
