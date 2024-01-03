@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Store;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DB;
 
 class StoreController extends Controller
@@ -51,19 +52,28 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+       
         // validation 
          $request->validate([
             'name'=>'required',
             'url' => 'required|url',
         ]);
 
+        $file = $request->file('logo');
+        $filePath = time().'.'.$file->getClientOriginalExtension();
+      
         $store = Store::create([
             'name'=>$request->name,
             'url'=>$request->url,
             'description'=>$request->description,
+            'logo'=>$filePath
         ]);
-
+    
         $store->categories()->attach($request->categories);
+
+        //Move Uploaded File
+        $destinationPath = 'store';
+        $file->move($destinationPath,$filePath);
 
         notify()->success('Store created !!!');
         return redirect()->back();
@@ -102,10 +112,22 @@ class StoreController extends Controller
      */
     public function update(Request $request, Store $store)
     {
+        
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $filePath = time().'.'.$file->getClientOriginalExtension();
+             //Move Uploaded File
+            $destinationPath = 'store';
+            $file->move($destinationPath,$filePath);
+        }else{
+            $filePath = $store->logo;
+        }
+
         $store->update([
             'name'=>$request->name,
             'url'=>$request->url,
-            'description'=>$request->description
+            'description'=>$request->description,
+            'logo'=>$filePath
         ]);
 
         
@@ -115,6 +137,8 @@ class StoreController extends Controller
         }
         
         $store->categories()->attach($request->categories);
+
+       
 
         notify()->success('Store updated !!!');
         return redirect()->back();

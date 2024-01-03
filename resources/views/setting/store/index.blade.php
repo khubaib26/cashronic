@@ -12,6 +12,7 @@
                 <table class="text-left w-full border-collapse">
                   <thead>
                     <tr>
+                      <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">&nbsp;</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light w-2/12">Store Name</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Store URL</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Categories</th>
@@ -22,6 +23,13 @@
                     @can('Store access')
                       @foreach($stores as $store)
                       <tr class="hover:bg-grey-lighter">
+                        <td class="py-4 px-6 border-b border-grey-light">
+                          @if($store->logo != '')
+                          <img src="/store/{{ $store->logo }}">
+                          @else
+                          <img src="{{ asset("images/logo.png") }}">
+                          @endif
+                        </td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $store->name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $store->url }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">
