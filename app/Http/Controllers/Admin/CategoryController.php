@@ -88,11 +88,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $sid=null)
     {
-        $category = Category::find($id);
-        dd($category);
-        return view('setting.category.edit',['category'=>$category]);
+        
+        if($sid != ''){
+            $category = Subcategory::find($sid);
+        }else{
+            $category = Category::find($id);
+        }
+
+        $categories = Category::get();
+        return view('setting.category.edit',['category'=>$category, 'categories'=>$categories]);
     }
 
     /**
@@ -102,9 +108,25 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+        ]);
+
+        if($request->parent_category != ''){
+            $subcategory = Subcategory::find($id);
+            $subcategory->name = $request->name;
+            $subcategory->category_id  = $request->parent_category;
+            $subcategory->save();
+        }else{
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->save();
+        }
+
+        notify()->success('Category updated !!!');
+        return redirect()->back();
     }
 
     /**
@@ -113,8 +135,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        notify()->success('Category deleted !!!');
+        return redirect()->back();
+    }
+
+
+    public function sub_category_destroy($sid)
+    {
+        Subcategory::find($sid)->delete();
+        notify()->success('Sub Category deleted !!!');
+        return redirect()->back();
     }
 }

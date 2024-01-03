@@ -30,10 +30,13 @@
                           <ul>
                             @foreach($category->subCategories as $scategory)
                             <li>
-                              {{$scategory->name}}
                               @can('Category edit')
-                              <a href="{{route('admin.categories.edit',$scategory->id)}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
+                              <a href="category/edit/{{$category->id}}/{{$scategory->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
                               @endcan
+                              @can('Category delete')
+                              <a href="category/delete/{{$scategory->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-red-400"><span class="far fa-trash"></span></a>
+                              @endcan
+                              {{$scategory->name}}
                              </li>
                             @endforeach  
                             </ul>
@@ -47,7 +50,7 @@
                       </td>
                         <td class="py-4 px-6 border-b border-grey-light text-right">
                           @can('Category edit')
-                          <a href="{{route('admin.categories.edit',$category->id)}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
+                          <a href="category/edit/{{$category->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
                           @endcan
 
                           @can('Category delete')

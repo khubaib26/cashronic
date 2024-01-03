@@ -62,8 +62,6 @@ class RoleController extends Controller
 
         notify()->success('Role created !!!');
         return redirect()->back();
-        
-        //return redirect()->back()->withSuccess('Role created !!!');
     }
 
     /**

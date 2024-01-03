@@ -73,8 +73,14 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('users','UserController');
         Route::resource('posts','PostController');
         Route::resource('front-users','FrontUserController');
+        
+        //Category Routes
         Route::resource('categories','CategoryController');
+        Route::get('category/edit/{id}/{sid?}', [CategoryController::class,'edit']);
+        Route::get('category/delete/{sid}', [CategoryController::class,'sub_category_destroy']);
 
+        //Store Route
+        Route::resource('stores','StoreController');
 
         Route::get('/profile',[ProfileController::class,'index'])->name('profile');
         Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');
