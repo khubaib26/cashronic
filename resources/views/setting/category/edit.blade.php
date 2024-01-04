@@ -17,7 +17,7 @@
                   <select name="parent_category" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200">
                       <option value="">None</option>
                       @foreach($categories as $cat)
-                      <option value="{{$cat->id}}" <?php if(isset($category->category_id)){ if($category->category_id == $cat->id){ echo "selected";}} ?> >{{$cat->name}}</option>
+                      <option value="{{$cat->id}}" <?php if($category->parent_id == $cat->id){ echo "selected";} ?> >{{$cat->name}}</option>
                       @endforeach
                   </select>
                 </div>

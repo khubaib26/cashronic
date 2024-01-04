@@ -112,10 +112,6 @@ class StoreController extends Controller
      */
     public function update(Request $request, Store $store)
     {
-        
-        
-        
-
         if($request->hasFile('logo')){
             
             unlink('store/'.$store->logo);
@@ -158,6 +154,14 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+       
+        if($store->logo != ""){
+            unlink('store/'.$store->logo);
+        }
+    
+        $store->delete();
+        
+        notify()->success('Store deleted !!!');
+        return redirect()->back();
     }
 }

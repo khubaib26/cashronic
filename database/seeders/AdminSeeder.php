@@ -62,6 +62,16 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'FrontUser create']);
         $permission = Permission::create(['name' => 'FrontUser delete']);
 
+        $permission = Permission::create(['name' => 'Category access']);
+        $permission = Permission::create(['name' => 'Category edit']);
+        $permission = Permission::create(['name' => 'Category create']);
+        $permission = Permission::create(['name' => 'Category delete']);
+
+        $permission = Permission::create(['name' => 'Store access']);
+        $permission = Permission::create(['name' => 'Store edit']);
+        $permission = Permission::create(['name' => 'Store create']);
+        $permission = Permission::create(['name' => 'Store delete']);
+
 
 
         $super_admin->assignRole($super_admin_role);

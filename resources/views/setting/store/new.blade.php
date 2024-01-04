@@ -38,8 +38,9 @@
                       class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     ></textarea>
                   </div></div>
-                  <div> <div class="flex text-gray-500 mt-5 mx-auto order-first md:order-last">
-                    <div class="bg-white rounded-lg">
+                  <div> 
+                    <div class="flex text-gray-500 mt-5 mx-auto order-first md:order-last">
+                    <div class="bg-white rounded-lg mx-auto">
                       <div class="" x-data="imageData()">
                         <div x-show="previewUrl == '' && imgurl == ''">
                           <p class="text-center uppercase text-bold">
@@ -49,15 +50,15 @@
                             <input type="file" name="logo" id="thumbnailprev" class="hidden thumbnailprev" @change="updatePreview()">
                           </p>
                         </div>
-                        <div x-show="previewUrl !== ''" class="relative w-40 h-40">
-                          <img :src="previewUrl" alt="" class="shadow-lg rounded-full max-w-full h-auto align-middle border-4 h-full w-full object-cover">
+                        <div x-show="previewUrl !== ''" class="relative xw-40 xh-40">
+                          <img :src="previewUrl" alt="" class="shadow-lg xrounded-full max-w-full h-auto align-middle border-4 h-full w-full object-cover">
                           <div class="xml-5 absolute top-0 right-0">
                             <button type="button" class="" @click="clearPreview()"><span class="fas fa-edit"></span></button>
                           </div>
                         </div>
 
-                        <div x-show="imgurl !== ''" class="relative w-40 h-40">
-                          <img :src="imgurl" alt="" class="shadow-lg rounded-full max-w-full h-auto align-middle border-4 h-full w-full object-cover">
+                        <div x-show="imgurl !== ''" class="relative xw-40 xh-40">
+                          <img :src="imgurl" alt="" class="shadow-lg xrounded-full max-w-full h-auto align-middle border-4 h-full w-full object-cover">
                           <div class="xml-5 absolute top-0 right-0">
                             <button type="button" class="" @click="clearPreview()"><span class="fas fa-edit"></span></button>
                           </div>
@@ -77,13 +78,7 @@
                                   <input type="checkbox" class="form-checkbox h-5 w-5 text-pink-900" name="categories[]" value="{{$category->id}}"
                                   ><span class="ml-2 text-gray-700">{{ $category->name }}</span>
                               </label>
-                              {{-- <ul>
-                                @foreach($category->subCategories as $scategory)
-                                <li>
-                                  {{$scategory->name}}
-                                 </li>
-                                @endforeach  
-                              </ul> --}}
+                              
                           </div>
                       </div>
                   @endforeach

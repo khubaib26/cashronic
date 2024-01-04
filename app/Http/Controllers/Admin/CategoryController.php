@@ -28,7 +28,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::paginate(10);
+        //$categories = Category::paginate(10);
+        $categories = Category::where('parent_id', null)->paginate(10);
         //dd($categories);
         return view('setting.category.index',['categories' => $categories]);
     }
@@ -40,7 +41,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
+        $categories = Category::where('parent_id', null)->get();
         return view('setting.category.new', ['categories' => $categories]);
     }
 
@@ -56,17 +57,8 @@ class CategoryController extends Controller
             'name'=>'required',
         ]);
 
-        if($request->parent_category != ''){
-            Subcategory::create([
-                'name'  =>  $request->name,
-                'category_id' => $request->parent_category
-            ]);
-        }else{
-            Category::create([
-                'name'=>$request->name
-            ]);
-        }
 
+        Category::create(['name'=>$request->name, 'parent_id'=>$request->parent_category]);
         notify()->success('Category created !!!');
         return redirect('admin/categories');
     }
@@ -90,14 +82,9 @@ class CategoryController extends Controller
      */
     public function edit($id, $sid=null)
     {
-        
-        if($sid != ''){
-            $category = Subcategory::find($sid);
-        }else{
-            $category = Category::find($id);
-        }
-
-        $categories = Category::get();
+        $category = Category::find($id);
+       
+        $categories = Category::where('parent_id', null)->get();
         return view('setting.category.edit',['category'=>$category, 'categories'=>$categories]);
     }
 
@@ -114,17 +101,11 @@ class CategoryController extends Controller
             'name'=>'required',
         ]);
 
-        if($request->parent_category != ''){
-            $subcategory = Subcategory::find($id);
-            $subcategory->name = $request->name;
-            $subcategory->category_id  = $request->parent_category;
-            $subcategory->save();
-        }else{
-            $category = Category::find($id);
-            $category->name = $request->name;
-            $category->save();
-        }
-
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->parent_id = $request->parent_category;
+        $category->save();
+             
         notify()->success('Category updated !!!');
         return redirect()->back();
     }

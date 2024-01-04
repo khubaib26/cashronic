@@ -28,15 +28,19 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $category->icon }} {{ $category->name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">
                           <ul>
-                            @foreach($category->subCategories as $scategory)
+                            @foreach($category->child as $childCategory)
                             <li>
                               @can('Category edit')
-                              <a href="category/edit/{{$category->id}}/{{$scategory->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
+                              <a href="category/edit/{{$childCategory->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
                               @endcan
                               @can('Category delete')
-                              <a href="category/delete/{{$scategory->id}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-red-400"><span class="far fa-trash"></span></a>
+                              <form action="{{ route('admin.categories.destroy', $childCategory->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('delete')
+                                <button class="border border-transparent py-1 px-3 hover:border-pink-400 text-red-400"><span class="far fa-trash"></span></button>
+                              </form>
                               @endcan
-                              {{$scategory->name}}
+                              {{ $childCategory->name }}
                              </li>
                             @endforeach  
                             </ul>
