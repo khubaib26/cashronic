@@ -31,7 +31,7 @@
                           @endif
                         </td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $store->name }}</td>
-                        <td class="py-4 px-6 border-b border-grey-light">{{ $store->url }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light"><a href="{{ $store->url }}" target="_blank">{{ $store->url }}</a></td>
                         <td class="py-4 px-6 border-b border-grey-light">
                             @foreach($store->categories as $category)
                               <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-gray-500 rounded-full">{{ $category->name }}</span>
