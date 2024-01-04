@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Frontuser;
+use App\Models\Browserhistory;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -137,4 +138,12 @@ class FrontUserController extends Controller
         //return redirect()->back()->withSuccess('Post deleted !!!');
         return redirect()->back();
     }
+
+
+    //Get User Browser History
+    public function get_user_bowser_history($id){
+        $userHistory = Browserhistory::where('user_id',$id)->paginate(10);
+        return view('setting.front-user.browserhistory',['histories'=>$userHistory]);
+    }
+
 }

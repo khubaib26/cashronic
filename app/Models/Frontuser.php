@@ -41,4 +41,8 @@ class Frontuser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function browserHistory(){
+        return $this->hasMany(Browserhistory::class, 'user_id');
+    }
 }

@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\{
     FrontUserController,
     generalSettingController,
     CategoryController,
+    BrowserhistoryController,
+};
+
+use App\Http\Controllers\Front\{
+    FrontDashboardController,
 };
 
 /*
@@ -22,10 +27,6 @@ use App\Http\Controllers\Admin\{
 
 Route::get('/', function () {
     notify()->error('Laravel Notify is awesome!', 'My custom title');
-    // emotify('error', 'Laravel Notify is awesome!', 'My custom title');
-    // connectify('success', 'Connection Found', 'Success Message Here');
-    // smilify('success', 'You are successfully reconnected');
-    // drakify('success', 'cmx message.');
     return view('welcome');    
 });
 
@@ -44,17 +45,18 @@ Route::get('/test-mail',function(){
 });
 
 
-Route::get('/dashboard', function () {
-   
-    if(Auth::guard('front')->check()){
-        cookie()->queue(cookie('cxm', Auth::guard('front')->user()->id, 60));
-    }
-   
-    return view('front.dashboard');
-})->middleware(['front'])->name('dashboard');
+//Front User Dashbaord Routes 
+Route::middleware(['front'])->group(function () {
+    //Dashboard Routes
+    Route::get('/dashboard', [FrontDashboardController::class,'index'])->name('dashboard');
+    
+});
 
 
 require __DIR__.'/front_auth.php';
+
+
+
 
 // Admin routes
 Route::get('/admin/dashboard', function () {
@@ -72,8 +74,11 @@ Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
         Route::resource('permissions','PermissionController');
         Route::resource('users','UserController');
         Route::resource('posts','PostController');
-        Route::resource('front-users','FrontUserController');
         
+        //Front User Routes
+        Route::resource('front-users','FrontUserController');
+        Route::get('user-browser-history/{id}', [FrontUserController::class,'get_user_bowser_history'])->name('userBrowserHistory');
+
         //Category Routes
         Route::resource('categories','CategoryController');
         Route::get('category/edit/{id}/{sid?}', [CategoryController::class,'edit']);

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Admin\BrowserhistoryController;
 
 
 
@@ -22,5 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [ApiController::class, 'login']);
+Route::post('/browser-history', [BrowserhistoryController::class, 'store']);
+
 
 

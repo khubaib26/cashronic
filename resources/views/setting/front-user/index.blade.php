@@ -27,15 +27,17 @@
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->name }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->email }}</td>
                         <td class="py-4 px-6 border-b border-grey-light text-right">
-                          @can('FrontUser edit')
-                          <a href="{{route('admin.front-users.edit',$user->id)}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
-                          @endcan
+                          {{-- User Browser History --}}
+                          <a title="User Browser History" href="{{route('admin.userBrowserHistory',$user->id)}}" class="border border-transparent py-1 px-3 hover:border-green-400 text-green-400"><span class="fas fa-history"></span></a>
 
+                          @can('FrontUser edit')
+                          <a title="User Edit" href="{{route('admin.front-users.edit',$user->id)}}" class="border border-transparent py-1 px-3 hover:border-blue-400 text-blue-400"><span class="fas fa-edit"></span></a>
+                          @endcan
                           @can('FrontUser delete')
                           <form action="{{ route('admin.front-users.destroy', $user->id) }}" method="POST" class="inline">
                               @csrf
                               @method('delete')
-                              <button class="border border-transparent py-1 px-3 hover:border-pink-400 text-red-400"><span class="far fa-trash"></span></button>
+                              <button title="User Delete" class="border border-transparent py-1 px-3 hover:border-pink-400 text-red-400"><span class="far fa-trash"></span></button>
                           </form>
                           @endcan
 
