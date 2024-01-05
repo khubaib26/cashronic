@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\{
 
 use App\Http\Controllers\Front\{
     FrontDashboardController,
+    FavoriteController,
 };
 
 /*
@@ -49,6 +50,9 @@ Route::get('/test-mail',function(){
 Route::middleware(['front'])->group(function () {
     //Dashboard Routes
     Route::get('/dashboard', [FrontDashboardController::class,'index'])->name('dashboard');
+    
+    //add FavoriteStore
+    Route::get('favoritestore/{id}', [FavoriteController::class,'addFavoriteStore'])->name('favoriteStore');
     
 });
 

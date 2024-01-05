@@ -15,7 +15,9 @@ class FrontDashboardController extends Controller
         if(Auth::guard('front')->check()){
             cookie()->queue(cookie('cxm', Auth::guard('front')->user()->id, 60));
         }
-       
-        return view('front.dashboard');
+        
+        // available store
+        $stores = Store::where('active',1)->get();
+        return view('front.dashboard',['stores' => $stores]);
     }
 }

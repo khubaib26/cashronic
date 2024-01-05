@@ -18,4 +18,15 @@ class Store extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    // public function favorite(){
+    //     return $this->belongsTo(Favoritestore::class, 'id','store_id');
+    // }
+
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Favoritestore::class);
+    }
+
 }

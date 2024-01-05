@@ -59,21 +59,23 @@ class StoreController extends Controller
             'url' => 'required|url',
         ]);
 
-        $file = $request->file('logo');
-        $filePath = time().'.'.$file->getClientOriginalExtension();
-      
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $filePath = time().'.'.$file->getClientOriginalExtension();
+             //Move Uploaded File
+            $destinationPath = 'store';
+            $file->move($destinationPath,$filePath);
+        }
         $store = Store::create([
             'name'=>$request->name,
             'url'=>$request->url,
             'description'=>$request->description,
-            'logo'=>$filePath
+            'logo'=> (isset($filePath)) ? $filePath : ''
         ]);
     
         $store->categories()->attach($request->categories);
 
-        //Move Uploaded File
-        $destinationPath = 'store';
-        $file->move($destinationPath,$filePath);
+       
 
         notify()->success('Store created !!!');
         return redirect()->back();
@@ -114,7 +116,9 @@ class StoreController extends Controller
     {
         if($request->hasFile('logo')){
             
-            unlink('store/'.$store->logo);
+            if($store->logo != ''){
+                unlink('store/'.$store->logo);     
+            }
             
             $file = $request->file('logo');
             $filePath = time().'.'.$file->getClientOriginalExtension();
