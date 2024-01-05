@@ -12,10 +12,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        @notifyCss
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body class="font-sans antialiased">
+        <x-notify::notify />
         <div class="min-h-screen bg-gray-100">
             @include('front.layouts.navigation')
 
@@ -33,6 +35,7 @@
         </div>
 
         <!-- Scripts -->
+        @notifyJs
         <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

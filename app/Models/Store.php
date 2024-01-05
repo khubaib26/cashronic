@@ -29,4 +29,9 @@ class Store extends Model
         return $this->belongsToMany(Favoritestore::class);
     }
 
+    public function users()
+    {
+         return $this->belongsToMany(Frontuser::class, 'favorites');
+    }
+
 }

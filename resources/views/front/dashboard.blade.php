@@ -11,17 +11,18 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                         <div class="mb-5">
-                            <h2>Hi {{ Auth::guard('front')->user()->name }}...! Welcome to your Cash Back Account. </h2>
+                            <h2 class="text-xl">Hi {{ Auth::guard('front')->user()->name }}  </h2>
+                            <p>Welcome to your Cash Back Account. You're logged in!</p>
                         </div>
-                        <div class="mb-5">
-                            You're logged in! {{session()->get('api_access_token')}}
+                        <div class="md:text-right p-3 bg-blue-400 rounded mb-5">
+                             API Token: {{session()->get('api_access_token')}}
                         </div>
                     </div>
                     <hr class="mb-5">
                     <div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div>
-                                <h1 class="text-xl mb-5">Available  Stores</h1>
+                                <h1 class="text-2xl mb-5">Available  Stores</h1>
                             </div>
                             <div>
                                 <h1 class="text-right mb-5"><a href="#">See All</a></h1>
@@ -30,7 +31,7 @@
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
                         @foreach ($stores as $store)
                             <div>
-                                <div class="p-5 shadow-lg border rounded h-100 mb-1">
+                                <div class="h-24 p-5 shadow-lg border rounded h-100 mb-1">
                                     <a href="{{ $store->url }}" target="_blank">
                                         <img src="/store/{{ $store->logo }}" alt="{{ $store->name }}">
                                     </a>

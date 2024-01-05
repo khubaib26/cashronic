@@ -50,4 +50,9 @@ class Frontuser extends Authenticatable
     {
         return $this->hasMany(Favoritestore::class);
     }
+
+    public function store()
+    {
+         return $this->belongsToMany(Store::class, 'favorites');
+    }
 }
