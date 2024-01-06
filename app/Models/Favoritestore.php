@@ -11,18 +11,21 @@ class Favoritestore extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id' , 'store_id'];
+    protected $fillable = ['frontuser_id' , 'store_id'];
     protected $dates = ['deleted_at'];
 
-    
+
+
+    public function store(){
+        return $this->belongsTo(Store::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(Frontuser::class);
     }
 
-    public function store(){
-        return $this->belongsTo(Store::class);
-    }
+    
 
 
 }

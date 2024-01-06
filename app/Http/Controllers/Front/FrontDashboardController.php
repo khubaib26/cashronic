@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Frontuser;
+use App\Models\Favoritestore;
 use App\Models\Store;
 
 class FrontDashboardController extends Controller
@@ -15,11 +16,13 @@ class FrontDashboardController extends Controller
         if(Auth::guard('front')->check()){
             cookie()->queue(cookie('cxm', Auth::guard('front')->user()->id, 60));
         }
-
-        //dd(Auth::guard('front')->user()->favorites);
-        
+  
         // available store
-        $stores = Store::where('active',1)->get();
-        return view('front.dashboard',['stores' => $stores]);
+        $stores = Store::with(['like'])->where('active',1)->get();
+
+        $favoriteStore = Auth::guard('front')->user()->favoriteStore;
+
+    
+        return view('front.dashboard',['stores' => $stores, 'favoriteStore'=>$favoriteStore]);
     }
 }

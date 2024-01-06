@@ -19,19 +19,14 @@ class Store extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    // public function favorite(){
-    //     return $this->belongsTo(Favoritestore::class, 'id','store_id');
-    // }
 
-
-    public function favorites()
-    {
-        return $this->belongsToMany(Favoritestore::class);
+    public function favorite(){
+        $cid = auth()->guard('front')->user()!=null ? auth()->guard('front')->user()->id : null; 
+        return $this->belongsTo(Favoritestore::class, 'id','store_id')->where('frontuser_id',$cid);
     }
 
-    public function users()
-    {
-         return $this->belongsToMany(Frontuser::class, 'favorites');
+    public function like(){
+        return $this->favorite()->selectRaw('store_id,count(*) as count')->groupBy('store_id');
     }
 
 }

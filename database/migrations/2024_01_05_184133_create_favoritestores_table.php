@@ -15,7 +15,7 @@ class CreateFavoritestoresTable extends Migration
     {
         Schema::create('favoritestores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('frontuser_id')->constrained('frontusers')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('frontusers')->cascadeOnDelete();
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

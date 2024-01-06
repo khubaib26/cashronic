@@ -46,13 +46,8 @@ class Frontuser extends Authenticatable
         return $this->hasMany(Browserhistory::class, 'user_id');
     }
 
-    public function favorites()
+    public function favoriteStore()
     {
-        return $this->hasMany(Favoritestore::class);
-    }
-
-    public function store()
-    {
-         return $this->belongsToMany(Store::class, 'favorites');
+	    return $this->belongsToMany(Store::class, 'favoritestores');
     }
 }
