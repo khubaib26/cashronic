@@ -28,7 +28,7 @@
                                 <h1 class="text-right mb-5"><a class="hover:text-blue-400" href="#">See All <span class="fas fa-chevron-right"></span></a></h1>
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">     
                         @foreach ($stores as $store)
                             <div>
                                 <div class="relative h-24 p-5 shadow-lg border rounded flex items-center mb-1">
@@ -43,40 +43,39 @@
                                 <div class="mb-5">
                                     <span class="fas fa-plus"></span> 30% Cash Back
                                 </div>  
-                            </div>
+                            </div>    
                         @endforeach 
                         </div>
                     </div>
-
+                    <hr class="mb-5">
                     <div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div>
-                                <h1 class="text-2xl mb-5">Your favorites Stores</h1>
+                                <h1 class="text-2xl mb-5">Your Favorites Stores</h1>
                             </div>
                             <div>
                                 <h1 class="text-right mb-5"><a class="hover:text-blue-400" href="#">See All <span class="fas fa-chevron-right"></span></a></h1>
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                         @foreach ($favoriteStore as $fstore)
                             <div>
                                 <div class="relative h-24 p-5 shadow-lg border rounded flex items-center mb-1">
                                     <a href="{{ $fstore->url }}" target="_blank">
-                                        <img src="/store/{{ $fstore->logo }}" alt="{{ $fstore->name }}">
+                                        <img class="w-48" src="/store/{{ $fstore->logo }}" alt="{{ $fstore->name }}">
                                     </a>
                                     <a href="{{route('favoriteStore',$fstore->id)}}" class="absolute -top-3 -right-2 rounded-full border border-transparent py-1 px-2 {!! $fstore->like ? 'bg-blue-200 hover:border-blue-400 text-blue-400' : 'bg-red-200 hover:border-red-400 text-red-400' !!}">
                                         {!! $fstore->like ? '<span class="fas fa-heart"></span>' : '<span class="far fa-heart"></span>' !!}
                                         
                                     </a>
+                                    <div class="absolute -bottom-3 right-0 rounded-full bg-blue-200 py-1 px-3 shadow text-pink-900 font-bold">
+                                        <span class="fas fa-plus"></span> 30% Cash Back
+                                    </div>
                                 </diV>
-                                <div class="mb-5">
-                                    <span class="fas fa-plus"></span> 30% Cash Back
-                                </div>  
                             </div>
                         @endforeach 
                         </div>
-                    </div>   
-                    
+                    </div>
 
                 </div>  
             </div>    
