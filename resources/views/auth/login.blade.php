@@ -28,7 +28,7 @@
 
               <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-center">
 
-                <button type="submit" class="bg-pink-900 text-white font-bold px-10 py-2 rounded-full focus:outline-none shadow hover:bg-blue-700 transition-colors m-auto">Log In</button>
+                <button type="submit" class="bg-pink-900 xtext-white font-bold px-10 py-2 rounded-full focus:outline-none shadow hover:bg-blue-700 transition-colors m-auto">Log In</button>
               </div>
             </div>
           </form>
