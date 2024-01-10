@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Front\{
     FrontDashboardController,
     FavoriteController,
+    FrontUserProfileController,
+   
 };
 
 /*
@@ -53,6 +55,10 @@ Route::middleware(['front'])->group(function () {
     
     //add FavoriteStore
     Route::get('favoritestore/{id}', [FavoriteController::class,'addFavoriteStore'])->name('favoriteStore');
+
+    //user Profile Route
+    Route::get('profile', [FrontUserProfileController::class,'profile'])->name('profile');
+    Route::put('user_profile_update', [FrontUserProfileController::class,'userUpdate'])->name('user.update');
     
 });
 

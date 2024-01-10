@@ -37,7 +37,6 @@
                                     </a>
                                     <a href="{{route('favoriteStore',$store->id)}}" class="absolute -top-3 -right-2 rounded-full border border-transparent py-1 px-2 {!! $store->like ? 'bg-blue-200 hover:border-blue-400 text-blue-400' : 'bg-red-200 hover:border-red-400 text-red-400' !!}">
                                         {!! $store->like ? '<span class="fas fa-heart"></span>' : '<span class="far fa-heart"></span>' !!}
-                                        
                                     </a>
                                 </diV>
                                 <div class="mb-5">
