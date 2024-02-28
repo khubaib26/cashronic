@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Frontuser;
 use App\Models\Favoritestore;
+use App\Models\Browserhistory;
 use App\Models\Store;
 
 class FrontDashboardController extends Controller
@@ -22,7 +23,25 @@ class FrontDashboardController extends Controller
 
         $favoriteStore = Auth::guard('front')->user()->favoriteStore;
 
+        $userHistory = Browserhistory::where('user_id',Auth::guard('front')->user()->id)->get();
+
+        // foreach ($userHistory as $history) {
+        //     if($history->asin){
+        //         $client = new \GuzzleHttp\Client();
     
-        return view('front.dashboard',['stores' => $stores, 'favoriteStore'=>$favoriteStore]);
+        //         $response = $client->request('GET', 'https://api.listingleopard.com/single/product-page?asin='.$history->asin.'&domain=amazon.com', [
+        //         'headers' => [
+        //             'X-api-key' => '3fec8651-4434-44cb-bfad-40d58cfb4229',
+        //             'accept' => 'application/json',
+        //         ],
+        //         ]);
+    
+        //         $data =  json_decode($response->getBody());
+        //        // dd($data[0]->product);
+        //     }
+        // }
+
+
+        return view('front.dashboard',['stores' => $stores, 'favoriteStore'=>$favoriteStore, 'userHistory'=>$userHistory]);
     }
 }

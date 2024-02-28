@@ -9,6 +9,7 @@ use App\Models\Browserhistory;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+
 class FrontUserController extends Controller
 {
     /**
@@ -142,7 +143,25 @@ class FrontUserController extends Controller
 
     //Get User Browser History
     public function get_user_bowser_history($id){
+
         $userHistory = Browserhistory::where('user_id',$id)->paginate(10);
+        
+        // foreach ($userHistory as $history) {
+        //     if($history->asin){
+        //         $client = new \GuzzleHttp\Client();
+    
+        //         $response = $client->request('GET', 'https://api.listingleopard.com/single/product-page?asin='.$history->asin.'&domain=amazon.com', [
+        //         'headers' => [
+        //             'X-api-key' => '3fec8651-4434-44cb-bfad-40d58cfb4229',
+        //             'accept' => 'application/json',
+        //         ],
+        //         ]);
+    
+        //         $data =  json_decode($response->getBody());
+        //         //dd($data);
+        //     }
+        // }
+                
         return view('setting.front-user.browserhistory',['histories'=>$userHistory]);
     }
 

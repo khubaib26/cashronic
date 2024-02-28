@@ -40,8 +40,20 @@ class BrowserhistoryController extends Controller
             'link'=>'required',
         ]);
 
-        $histroy = Browserhistory::create(['user_id'=>$request->user_id, 'link'=>$request->link]);
+        $client = new \GuzzleHttp\Client();
+    
+        $response = $client->request('GET', 'https://api.listingleopard.com/single/product-page?asin='.$request->asin.'&domain=amazon.com', [
+           'headers' => [
+                'X-api-key' => '3fec8651-4434-44cb-bfad-40d58cfb4229',
+                'accept' => 'application/json',
+            ],
+        ]);
+    
+        $productDetail =  $response->getBody();
 
+        
+        $histroy = Browserhistory::create(['user_id'=>$request->user_id, 'link'=>$request->link, 'asin'=>$request->asin, 'product_detail'=>$productDetail]);
+        
         return response()->json([
             'history'=> $histroy,
             'status' => true,

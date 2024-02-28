@@ -15,6 +15,8 @@ class AddLinkToBrowserhistoryTable extends Migration
     {
         Schema::table('browserhistories', function (Blueprint $table) {
             $table->text('link');
+            $table->text('asin', 10);
+            $table->longText('product_detail');
         });
     }
 
